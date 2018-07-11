@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2017-2018 Rudy De Busscher (https://www.atbash.be)
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+>
+
+<h:head>
+    <title>MicroProfile Starter</title>
+    <h:outputStylesheet library="css" name="jessie-0.2.css"/>
+</h:head>
+
+<h:body>
+    <h:form id="frm">
+        <div class="page-wrapper">
+
+            <div class="aside">
+
+                <p:menu style="width: 100%;">
+                    <p:menuitem value="Basics" action="main.xhtml" ajax="false"/>
+                    <p:menuitem value="Options" action="options.xhtml" ajax="false" disabled="true"/>
+                    <p:menuitem value="Build" action="build.xhtml" ajax="false" disabled="true"/>
+                </p:menu>
+
+            </div>
+            <div class="mainArea">
+                <div class="header">
+                    <h1>Jessie - Java EE Start</h1>
+                    <h2>with support for MicroProfile</h2>
+                    <h3>Version history</h3>
+                </div>
+                <div class="content">
+                    <h3>1.0 - xx July, 2018</h3>
+                    <ul>
+                        <li>Based on Jessie v3.0</li>
+                        <li>Support for MicroProfile 1.2 and 1.3</li>
+                        <li>Specification examples are selectable</li>
+                        <li>Project readme with info about specifications and how to test</li>
+                    </ul>
+
+                </div>
+
+                <div class="footer">Brought to you by <a href="https://www.atbash.be">Atbash</a></div>
+            </div>
+        </div>
+    </h:form>
+</h:body>
+
+
+</html>
+
+

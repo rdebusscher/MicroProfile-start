@@ -3,10 +3,12 @@ package [# th:text="${java_package}"/].resilient;
 import org.eclipse.microprofile.faulttolerance.Fallback;
 import org.eclipse.microprofile.faulttolerance.Timeout;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 @Path("/fault")
+@ApplicationScoped // Required for Liberty
 public class FaultToleranceController {
 
     @Fallback(fallbackMethod = "fallback") // better use FallbackHandler

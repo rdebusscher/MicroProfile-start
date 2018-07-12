@@ -1,7 +1,7 @@
 package [# th:text="${java_package}"/];
 
 import be.atbash.ee.jessie.test.demo.config.ConfigTestController;
-import be.atbash.ee.jessie.test.demo.fault.FaultToleranceController;
+import be.atbash.ee.jessie.test.demo.resilient.FaultToleranceController;
 import be.atbash.ee.jessie.test.demo.metric.MetricController;
 import be.atbash.ee.jessie.test.demo.secure.ProtectedController;
 import com.kumuluz.ee.jwt.auth.feature.JWTRolesAllowedDynamicFeature;

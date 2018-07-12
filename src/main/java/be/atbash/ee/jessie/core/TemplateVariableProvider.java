@@ -35,7 +35,7 @@ public class TemplateVariableProvider {
         result.put("java_package", model.getMaven().getGroupId() + '.' + model.getMaven().getArtifactId());
         result.put("maven_artifactid", model.getMaven().getArtifactId());
 
-        String artifactId = model.getMaven().getArtifactId();
+        String artifactId = model.getMaven().getArtifactId().replaceAll("\\.", "");
         result.put("artifact", StringUtils.capitalize(artifactId));
 
         if (model.getTechnologyStack() == TechnologyStack.MP) {

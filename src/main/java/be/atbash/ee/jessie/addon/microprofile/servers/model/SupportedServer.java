@@ -24,6 +24,7 @@ import java.util.List;
 public enum SupportedServer {
     // @formatter:off
     WILDFLY_SWARM("wildfly-swarm", Collections.singletonList(MicroProfileVersion.MP12))
+    , THORNTAIL_V2("thorntail-v2", Collections.singletonList(MicroProfileVersion.MP12))
     , LIBERTY("liberty", Arrays.asList(MicroProfileVersion.MP12, MicroProfileVersion.MP13))
     , KUMULUZEE("kumuluzEE", Collections.singletonList(MicroProfileVersion.MP12))
     , PAYARA_MICRO("payara-micro", Arrays.asList(MicroProfileVersion.MP12, MicroProfileVersion.MP13));

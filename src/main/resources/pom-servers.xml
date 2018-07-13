@@ -77,6 +77,53 @@
 
             </build>
         </profile>
+        <profile>
+            <id>thorntail-v2-1.2</id>
+
+            <properties>
+                <version.thorntail>2.0.0.Final</version.thorntail>
+            </properties>
+            <dependencyManagement>
+                <dependencies>
+                    <dependency>
+                        <groupId>io.thorntail</groupId>
+                        <artifactId>bom-all</artifactId>
+                        <version>${version.thorntail}</version>
+                        <scope>import</scope>
+                        <type>pom</type>
+                    </dependency>
+                </dependencies>
+            </dependencyManagement>
+
+            <dependencies>
+                <!-- Wildfly Swarm Fractions -->
+                <dependency>
+                    <groupId>io.thorntail</groupId>
+                    <artifactId>microprofile</artifactId>
+                </dependency>
+            </dependencies>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.thorntail</groupId>
+                        <artifactId>thorntail-maven-plugin</artifactId>
+                        <version>${version.thorntail}</version>
+
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>package</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+
+                    </plugin>
+
+                </plugins>
+
+            </build>
+        </profile>
 
         <profile>
             <id>liberty-1.2</id>

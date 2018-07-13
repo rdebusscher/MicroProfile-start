@@ -210,7 +210,7 @@ public class MicroprofileServersAddon extends AbstractAddon {
 
         }
 
-        if (supportedServer == SupportedServer.WILDFLY_SWARM) {
+        if (supportedServer == SupportedServer.WILDFLY_SWARM || supportedServer == SupportedServer.THORNTAIL_V2) {
             // Specific files for Auth-JWT
             String resourceDirectory = getResourceDirectory(model);
             directoryCreator.createDirectory(resourceDirectory);

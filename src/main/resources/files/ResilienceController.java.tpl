@@ -7,9 +7,9 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
-@Path("/fault")
-@ApplicationScoped // Required for Liberty
-public class FaultToleranceController {
+@Path("/resilience")
+@ApplicationScoped
+public class ResilienceController {
 
     @Fallback(fallbackMethod = "fallback") // better use FallbackHandler
     @Timeout(500)

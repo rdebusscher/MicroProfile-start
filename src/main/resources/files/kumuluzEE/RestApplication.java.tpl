@@ -1,7 +1,7 @@
 package [# th:text="${java_package}"/];
 
 import be.atbash.ee.jessie.test.demo.config.ConfigTestController;
-import be.atbash.ee.jessie.test.demo.resilient.FaultToleranceController;
+import be.atbash.ee.jessie.test.demo.resilient.ResilienceController;
 import be.atbash.ee.jessie.test.demo.metric.MetricController;
 import be.atbash.ee.jessie.test.demo.secure.ProtectedController;
 import com.kumuluz.ee.jwt.auth.feature.JWTRolesAllowedDynamicFeature;
@@ -35,7 +35,7 @@ public class [# th:text="${artifact}"/]RestApplication extends Application {
         // resources
         classes.add(HelloController.class);
         classes.add(ConfigTestController.class);
-        classes.add(FaultToleranceController.class);
+        classes.add(ResilienceController.class);
         classes.add(MetricController.class);
         classes.add(ProtectedController.class);
 

@@ -29,7 +29,7 @@ The example class **ConfigTestController** shows you how to inject a configurati
 
 Add resilient features to your applications like TimeOut, RetryPolicy, Fallback, bulkhead and circuit breaker. Specification [here](https://microprofile.io/project/eclipse/microprofile-fault-tolerance)
 
-The example class **FaultToleranceController** has an example of a FallBack mechanism where an fallback result is returned when the execution takes too long.
+The example class **ResilienceController** has an example of a FallBack mechanism where an fallback result is returned when the execution takes too long.
 [/]
 
 [# th:if="${mp_health_checks}"]

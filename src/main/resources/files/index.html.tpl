@@ -18,7 +18,7 @@
 
 [# th:if="${mp_fault_tolerance}"]
 <h3>Fault tolerance</h3>
-<a href="data/fault" target="_blank" >Fallback after timeout</a> <br/>
+<a href="data/resilience" target="_blank" >Fallback after timeout</a> <br/>
 [/]
 
 [# th:if="${mp_health_checks}"]

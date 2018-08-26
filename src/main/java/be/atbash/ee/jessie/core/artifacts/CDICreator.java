@@ -15,7 +15,9 @@
  */
 package be.atbash.ee.jessie.core.artifacts;
 
+import be.atbash.ee.jessie.core.model.BeansXMLMode;
 import be.atbash.ee.jessie.core.model.JessieModel;
+import be.atbash.ee.jessie.core.model.OptionValue;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.Map;
@@ -28,8 +30,14 @@ import java.util.Set;
 public class CDICreator extends AbstractCreator {
 
     public void createCDIFilesForWeb(JessieModel model) {
+        BeansXMLMode mode = getMode(model);
+        if (mode == BeansXMLMode.IMPLICIT) {
+            // implicit means no beans.xml
+            return;
+        }
         Set<String> alternatives = model.getParameter(JessieModel.Parameter.ALTERNATIVES);
         Map<String, String> variables = model.getVariables();
+        variables.put("beans_xml_mode", mode.getMode());
 
         String webInfDirectory = model.getDirectory() + "/" + MavenCreator.SRC_MAIN_WEBAPP + "/WEB-INF";
         directoryCreator.createDirectory(webInfDirectory);
@@ -39,9 +47,24 @@ public class CDICreator extends AbstractCreator {
 
     }
 
+    private BeansXMLMode getMode(JessieModel model) {
+        OptionValue optionValue = model.getOptions().get(BeansXMLMode.OptionName.name);
+        BeansXMLMode mode = BeansXMLMode.IMPLICIT;
+        if (optionValue != null) {
+            mode = BeansXMLMode.getValue(optionValue.getSingleValue());
+        }
+        return mode;
+    }
+
     public void createCDIFilesForJar(JessieModel model) {
+        BeansXMLMode mode = getMode(model);
+        if (mode == BeansXMLMode.IMPLICIT) {
+            // implicit means no beans.xml
+            return;
+        }
         Set<String> alternatives = model.getParameter(JessieModel.Parameter.ALTERNATIVES);
         Map<String, String> variables = model.getVariables();
+        variables.put("beans_xml_mode", mode.getMode());
 
         String metaInfDirectory = model.getDirectory() + "/" + MavenCreator.SRC_MAIN_RESOURCES + "/META-INF";
         directoryCreator.createDirectory(metaInfDirectory);

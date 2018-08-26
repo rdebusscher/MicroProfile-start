@@ -15,10 +15,10 @@
  */
 package be.atbash.ee.jessie;
 
+import be.atbash.ee.jessie.core.model.BeansXMLMode;
 import be.atbash.ee.jessie.core.model.JavaEEVersion;
 import be.atbash.ee.jessie.core.model.JavaSEVersion;
 import be.atbash.ee.jessie.core.model.MicroProfileVersion;
-import be.atbash.ee.jessie.core.model.TechnologyStack;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
@@ -31,29 +31,29 @@ import java.util.List;
 @Named
 public class DataBean {
 
-    private List<SelectItem> javaEEItems;
     private List<SelectItem> javaSEItems;
     private List<SelectItem> mpItems;
+    private List<SelectItem> beansxmlItems;
 
     @PostConstruct
     public void init() {
-        defineJavaEEItems();
         defineJavaSEItems();
 
         defineMPVersions();
+        defineBeanxmlItems();
+    }
+
+    private void defineBeanxmlItems() {
+        beansxmlItems = new ArrayList<>();
+        for (BeansXMLMode beansXMLMode : BeansXMLMode.values()) {
+            beansxmlItems.add(new SelectItem(beansXMLMode.getMode(), beansXMLMode.getMode()));
+        }
     }
 
     private void defineMPVersions() {
         mpItems = new ArrayList<>();
         for (MicroProfileVersion microProfileVersion : MicroProfileVersion.values()) {
             mpItems.add(new SelectItem(microProfileVersion.getCode(), microProfileVersion.getLabel()));
-        }
-    }
-
-    private void defineJavaEEItems() {
-        javaEEItems = new ArrayList<>();
-        for (JavaEEVersion javaEEVersion : JavaEEVersion.values()) {
-            javaEEItems.add(new SelectItem(javaEEVersion.getCode(), javaEEVersion.getLabel()));
         }
     }
 
@@ -64,16 +64,16 @@ public class DataBean {
         }
     }
 
-    public List<SelectItem> getJavaEEItems() {
-        return javaEEItems;
-    }
-
     public List<SelectItem> getJavaSEItems() {
         return javaSEItems;
     }
 
     public List<SelectItem> getMpItems() {
         return mpItems;
+    }
+
+    public List<SelectItem> getBeansxmlItems() {
+        return beansxmlItems;
     }
 
 }

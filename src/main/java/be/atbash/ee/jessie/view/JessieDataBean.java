@@ -56,6 +56,7 @@ public class JessieDataBean implements Serializable {
     ;
     private String mpVersion;
     private String supportedServer;
+    private String beansxmlMode;
 
     private List<SelectItem> supportedServerItems;
     private List<String> selectedSpecs = new ArrayList<>();
@@ -178,6 +179,8 @@ public class JessieDataBean implements Serializable {
 
         model.setSpecification(specifications);
 
+        model.getOptions().put(BeansXMLMode.OptionName.name, new OptionValue(BeansXMLMode.getValue(beansxmlMode).getMode()));
+
         modelManager.prepareModel(model, false);
         creator.createArtifacts(model);
 
@@ -266,5 +269,32 @@ public class JessieDataBean implements Serializable {
 
     public boolean isHasErrors() {
         return hasErrors;
+    }
+
+    public String getBeansxmlMode() {
+        return beansxmlMode;
+    }
+
+    public void setBeansxmlMode(String beansxmlMode) {
+        this.beansxmlMode = beansxmlMode;
+    }
+
+    public String getBeansxmlModelDescription() {
+        String result;
+        switch (BeansXMLMode.getValue(beansxmlMode)) {
+
+            case IMPLICIT:
+                result = "No beans.xml file generated (implicit)";
+                break;
+            case ANNOTATED:
+                result = "beans.xml file generated with discovery mode 'annotated'";
+                break;
+            case ALL:
+                result = "beans.xml file generated with discovery mode 'all'";
+                break;
+            default:
+                throw new IllegalArgumentException(String.format("BeansXMLMode '%s' not supported", beansxmlMode));
+        }
+        return result;
     }
 }

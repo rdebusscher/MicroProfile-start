@@ -38,6 +38,10 @@ public class JessieModelInitializer {
         checkDirectory(model, localExecution);
 
         defineTemplate(model);
+
+        if (!model.getOptions().containsKey(BeansXMLMode.OptionName.name)) {
+            model.getOptions().put(BeansXMLMode.OptionName.name, new OptionValue(BeansXMLMode.ANNOTATED.getMode()));
+        }
     }
 
     private void checkDirectory(JessieModel model, boolean localExecution) {
@@ -59,7 +63,7 @@ public class JessieModelInitializer {
     private String getDirectoryFromModelFileName(String modelFileName) {
         String result = modelFileName;
         int length = modelFileName.length();
-        if (modelFileName.endsWith(".yaml") && length > 4) {
+        if (modelFileName.endsWith(".yaml") && length > 5) {
             result = "./" + modelFileName.substring(0, length - 5);
         }
         return result;

@@ -25,9 +25,9 @@ public enum SupportedServer {
     // @formatter:off
     WILDFLY_SWARM("wildfly-swarm", Collections.singletonList(MicroProfileVersion.MP12))
     , THORNTAIL_V2("thorntail-v2", Arrays.asList(MicroProfileVersion.MP12, MicroProfileVersion.MP13))
-    , LIBERTY("liberty", Arrays.asList(MicroProfileVersion.MP12, MicroProfileVersion.MP13))
+    , LIBERTY("liberty", Arrays.asList(MicroProfileVersion.MP12, MicroProfileVersion.MP13, MicroProfileVersion.MP14, MicroProfileVersion.MP20))
     , KUMULUZEE("kumuluzEE", Collections.singletonList(MicroProfileVersion.MP12))
-    , PAYARA_MICRO("payara-micro", Arrays.asList(MicroProfileVersion.MP12, MicroProfileVersion.MP13));
+    , PAYARA_MICRO("payara-micro", Arrays.asList(MicroProfileVersion.MP12, MicroProfileVersion.MP13, MicroProfileVersion.MP14, MicroProfileVersion.MP20));
     // @formatter:on
 
     private String name;

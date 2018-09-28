@@ -20,9 +20,10 @@ import java.util.Set;
 
 public enum MicroProfileVersion {
 
-    NONE(null, ""), MP12("1.2", "MP 1.2"), MP13("1.3", "MP 1.3");
+    NONE(null, ""), MP12("1.2", "MP 1.2"), MP13("1.3", "MP 1.3"), MP14("1.4", "MP 1.4"), MP20("2.0", "MP 2.0", "2.0.1");
 
     private String code;
+    private String mavenVersion;
     private String label;
     private Set<String> alternatives;
 
@@ -30,11 +31,21 @@ public enum MicroProfileVersion {
         this.code = code;
         this.label = label;
         alternatives = new HashSet<>();
+        mavenVersion = code;
+    }
+
+    MicroProfileVersion(String code, String label, String mavenVersion) {
+        this(code, label);
+        this.mavenVersion = mavenVersion;
 
     }
 
     public String getCode() {
         return code;
+    }
+
+    public String getMavenVersion() {
+        return mavenVersion;
     }
 
     public String getLabel() {

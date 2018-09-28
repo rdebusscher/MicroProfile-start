@@ -18,19 +18,18 @@ package be.atbash.ee.jessie.addon.microprofile.servers.model;
 import be.atbash.ee.jessie.core.model.MicroProfileVersion;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public enum MicroprofileSpec {
     // @formatter:off
-    CONFIG("config", "Config", Arrays.asList(MicroProfileVersion.MP12, MicroProfileVersion.MP13))
-    , FAULT_TOLERANCE("fault_tolerance", "Fault Tolerance", Arrays.asList(MicroProfileVersion.MP12, MicroProfileVersion.MP13))
-    , JWT_AUTH("JWT_auth", "JWT Auth", Arrays.asList(MicroProfileVersion.MP12, MicroProfileVersion.MP13))
-    , HEALTH_METRICS("health_metrics", "Health Metrics", Arrays.asList(MicroProfileVersion.MP12, MicroProfileVersion.MP13))
-    , HEALTH_CHECKS("health_checks", "Health Checks", Arrays.asList(MicroProfileVersion.MP12, MicroProfileVersion.MP13))
-    , OPEN_API("open_API", "OpenAPI", Collections.singletonList(MicroProfileVersion.MP13))
-    , OPEN_TRACING("open_tracing", "OpenTracing", Collections.singletonList(MicroProfileVersion.MP13))
-    , REST_CLIENT("rest_client", "TypeSafe Rest Client", Collections.singletonList(MicroProfileVersion.MP13))
+    CONFIG("config", "Config", Arrays.asList(MicroProfileVersion.MP12, MicroProfileVersion.MP13, MicroProfileVersion.MP14, MicroProfileVersion.MP20))
+    , FAULT_TOLERANCE("fault_tolerance", "Fault Tolerance", Arrays.asList(MicroProfileVersion.MP12, MicroProfileVersion.MP13, MicroProfileVersion.MP14, MicroProfileVersion.MP20))
+    , JWT_AUTH("JWT_auth", "JWT Auth", Arrays.asList(MicroProfileVersion.MP12, MicroProfileVersion.MP13, MicroProfileVersion.MP14, MicroProfileVersion.MP20))
+    , HEALTH_METRICS("health_metrics", "Health Metrics", Arrays.asList(MicroProfileVersion.MP12, MicroProfileVersion.MP13, MicroProfileVersion.MP14, MicroProfileVersion.MP20))
+    , HEALTH_CHECKS("health_checks", "Health Checks", Arrays.asList(MicroProfileVersion.MP12, MicroProfileVersion.MP13, MicroProfileVersion.MP14, MicroProfileVersion.MP20))
+    , OPEN_API("open_API", "OpenAPI", Arrays.asList(MicroProfileVersion.MP13, MicroProfileVersion.MP14, MicroProfileVersion.MP20))
+    , OPEN_TRACING("open_tracing", "OpenTracing", Arrays.asList(MicroProfileVersion.MP13, MicroProfileVersion.MP14, MicroProfileVersion.MP20))
+    , REST_CLIENT("rest_client", "TypeSafe Rest Client", Arrays.asList(MicroProfileVersion.MP13, MicroProfileVersion.MP14, MicroProfileVersion.MP20))
     ;
     // @formatter:on
 

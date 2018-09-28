@@ -22,7 +22,7 @@ public class ProtectedController {
 
     @GET
     @RolesAllowed("protected")
-    public String sayHello() {
+    public String getJWTBasedValue() {
         return "Protected Resource; Custom value : " + custom.getValue();
     }
 }

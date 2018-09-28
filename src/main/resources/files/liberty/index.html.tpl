@@ -39,7 +39,7 @@ Look at readme.md on how to test protected endpoint.
 
 [# th:if="${mp_open_API}"]
 <h3>Open API</h3>
-<a href="openapi" target="_blank" >Open API Documentation</a> <br/>
+<a href="../openapi" target="_blank" >Open API Documentation</a> <br/>
 [/]
 
 [# th:if="${mp_open_tracing}"]

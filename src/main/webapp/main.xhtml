@@ -34,10 +34,7 @@
 <h:body>
     <ui:composition template="WEB-INF/template/jessieTemplate.xhtml">
         <ui:define name="header">
-            <f:metadata>
-                <f:event type="preRenderView" listener="#{jessieDataBean.activePage('main')}"/>
-            </f:metadata>
-            Basic parameters
+            Generate MicroProfile Maven Project with examples
         </ui:define>
         <ui:define name="content">
             <h:panelGrid columns="2">
@@ -57,6 +54,7 @@
                 <p:selectOneMenu id="mpVersion" value="#{jessieDataBean.mpVersion}"
                                  required="true">
                     <f:selectItems value="${dataBean.mpItems}"/>
+                    <p:ajax listener="#{jessieDataBean.onMPVersionSelected}" update="options"/>
                 </p:selectOneMenu>
 
                 <p:outputLabel value="Java SE Version" for="javaSEVersion"/>
@@ -64,12 +62,43 @@
                                  disabled="true">
                     <f:selectItems value="${dataBean.javaSEItems}"/>
                 </p:selectOneMenu>
-
-                <p:commandButton value="Options" ajax="false" icon="fa fa-cog"
-                                 action="options.xhtml" actionListener="#{jessieDataBean.validateMainValues}"/>
             </h:panelGrid>
             <p:tooltip id="groupIdToolTipFocus" for="groupId" showEvent="focus" hideEvent="blur" />
             <p:tooltip id="artifactIdToolTipFocus" for="artifactId" showEvent="focus" hideEvent="blur" />
+
+            <h:panelGroup id="options">
+                <h3>Project Options</h3>
+
+                <h:panelGrid columns="2">
+                    <p:outputLabel value="MicroProfile Server" for="supportedServer"/>
+                    <p:selectOneMenu id="supportedServer" value="#{jessieDataBean.supportedServer}" required="true"
+                                     disabled="#{empty jessieDataBean.mpVersion}">
+                        <f:selectItem/>
+                        <f:selectItems value="${jessieDataBean.supportedServerItems}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Examples for specifications" for="microprofileSpecs"/>
+                    <p:selectManyCheckbox id="microprofileSpecs" value="#{jessieDataBean.selectedSpecs}" layout="grid"
+                                          columns="3" disabled="#{empty jessieDataBean.mpVersion}">
+                        <f:selectItems value="#{jessieDataBean.specs}" var="spec" itemLabel="#{spec}"
+                                       itemValue="#{spec}"/>
+                    </p:selectManyCheckbox>
+
+                    <p:outputLabel value="beans.xml" for="beansxmlFile"/>
+                    <p:selectOneMenu id="beansxmlFile" value="#{jessieDataBean.beansxmlMode}" required="true">
+                        <f:selectItems value="${dataBean.beansxmlItems}"/>
+                    </p:selectOneMenu>
+
+                    <h:panelGroup/>
+                    <h:panelGroup>
+                        <i class="fa fa-info-circle"/>
+                        "implicit" -> no beans.xml, "annotated" and "all" are the values for "bean-discovery-mode"
+                    </h:panelGroup>
+                </h:panelGrid>
+            </h:panelGroup>
+            <p:commandButton value="Download" icon="fa fa-download"
+                             actionListener="#{jessieDataBean.generateProject}" ajax="false"/>
+
         </ui:define>
     </ui:composition>
 </h:body>

@@ -20,11 +20,9 @@ import be.atbash.ee.jessie.addon.microprofile.servers.model.MicroprofileSpec;
 import be.atbash.ee.jessie.addon.microprofile.servers.model.SupportedServer;
 import be.atbash.ee.jessie.core.artifacts.Creator;
 import be.atbash.ee.jessie.core.model.*;
-import be.atbash.util.StringUtils;
 import org.apache.deltaspike.core.api.scope.ViewAccessScoped;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
@@ -50,10 +48,9 @@ public class JessieDataBean implements Serializable {
     @Inject
     private ZipFileCreator zipFileCreator;
 
-    private String activeScreen;
     private JessieMaven mavenData;
     private String javaSEVersion = "1.8";
-    ;
+
     private String mpVersion;
     private String supportedServer;
     private String beansxmlMode;
@@ -63,25 +60,15 @@ public class JessieDataBean implements Serializable {
     private List<SelectItem> specs;
     private String selectedSpecDescription;
 
-    private boolean hasErrors;
-
     @PostConstruct
     public void init() {
         mavenData = new JessieMaven();
     }
 
-    public void activePage(String activeScreen) {
-        this.activeScreen = activeScreen;
-        if ("build".equals(activeScreen)) {
-            validateMainValues();
-        }
-        if ("options".equals(activeScreen)) {
-            MicroProfileVersion version = MicroProfileVersion.valueFor(mpVersion);
-
-            defineSupportedServerItems(version);
-            selectedSpecs.clear();
-            defineExampleSpecs(version);
-        }
+    public void onMPVersionSelected() {
+        MicroProfileVersion version = MicroProfileVersion.valueFor(mpVersion);
+        defineExampleSpecs(version);
+        defineSupportedServerItems(version);
     }
 
     private void defineExampleSpecs(MicroProfileVersion version) {
@@ -120,44 +107,7 @@ public class JessieDataBean implements Serializable {
 
     }
 
-    public String selectedMenuItemStyleClass(String menuItem) {
-        return activeScreen.equals(menuItem) ? "activePage" : "";
-    }
-
-    public void validateMainValues() {
-        hasErrors = false;
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-
-        if (mavenData.getGroupId() == null || mavenData.getGroupId().trim().isEmpty()) {
-            addErrorMessage(facesContext, "groupId is required");
-        }
-
-        if (mavenData.getArtifactId() == null || mavenData.getArtifactId().trim().isEmpty()) {
-            addErrorMessage(facesContext, "artifactId is required");
-        }
-
-        if (javaSEVersion == null || javaSEVersion.trim().isEmpty()) {
-            addErrorMessage(facesContext, "Java SE version is required");
-        }
-
-        if ("options".equals(activeScreen) && supportedServer.trim().isEmpty()) {
-            addErrorMessage(facesContext, "Supported server selection is required");
-        }
-    }
-
-    private void addErrorMessage(FacesContext facesContext, String message) {
-        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, message, message));
-        hasErrors = true;
-    }
-
     public void generateProject() {
-        if (StringUtils.isEmpty(supportedServer)) {
-            FacesContext facesContext = FacesContext.getCurrentInstance();
-            addErrorMessage(facesContext, "Supported server selection is required");
-            FacesContext.getCurrentInstance().getViewRoot().setViewId("/options.xhtml");
-            FacesContext.getCurrentInstance().renderResponse();
-            return;
-        }
 
         JessieModel model = new JessieModel();
         model.setDirectory(mavenData.getArtifactId());
@@ -208,10 +158,6 @@ public class JessieDataBean implements Serializable {
         }
 
         fc.responseComplete(); // Important! Otherwise JSF will attempt to render the response which obviously will fail since it's already written with a file and closed.
-    }
-
-    public String getActiveScreen() {
-        return activeScreen;
     }
 
     public JessieMaven getMavenData() {
@@ -265,10 +211,6 @@ public class JessieDataBean implements Serializable {
 
     public void setSupportedServer(String supportedServer) {
         this.supportedServer = supportedServer;
-    }
-
-    public boolean isHasErrors() {
-        return hasErrors;
     }
 
     public String getBeansxmlMode() {

@@ -129,7 +129,7 @@
             <id>thorntail-v2-1.3</id>
 
             <properties>
-                <version.thorntail>2.0.0.Final</version.thorntail>
+                <version.thorntail>2.1.0.Final</version.thorntail>
             </properties>
             <dependencyManagement>
                 <dependencies>
@@ -147,28 +147,6 @@
                 <dependency>
                     <groupId>io.thorntail</groupId>
                     <artifactId>microprofile</artifactId>
-                    <!-- that should not be needed.See THORN-2015 -->
-                    <exclusions>
-                        <exclusion>
-                            <groupId>org.wildfly.swarm</groupId>
-                            <artifactId>config-api-runtime</artifactId>
-                        </exclusion>
-                    </exclusions>
-                </dependency>
-                <!-- the next ones should be in the above, but unfortunately are missing in TT 2.0
-                    See THORN-2093
-                -->
-                <dependency>
-                    <groupId>io.thorntail</groupId>
-                    <artifactId>microprofile-openapi</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>io.thorntail</groupId>
-                    <artifactId>microprofile-opentracing</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>io.thorntail</groupId>
-                    <artifactId>microprofile-restclient</artifactId>
                 </dependency>
             </dependencies>
 
